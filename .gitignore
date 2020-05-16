@@ -43,3 +43,5 @@ fabric.properties
 
 server/packages/**
 *.exe
+*.suo
+.vs
