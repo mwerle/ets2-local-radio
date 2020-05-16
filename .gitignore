@@ -45,3 +45,5 @@ server/packages/**
 *.exe
 *.suo
 .vs
+**/Debug*/
+**/Release*/
