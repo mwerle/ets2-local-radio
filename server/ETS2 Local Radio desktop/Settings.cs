@@ -36,6 +36,8 @@ namespace ETS2_Local_Radio_server
         public static string Ets2Folder = null;
         public static string AtsFolder = null;
 
+        public static bool Use_Local_Server = false;
+
         public static void Load()
         {
             if (File.Exists(Directory.GetCurrentDirectory() + "\\settings.json"))
@@ -68,6 +70,8 @@ namespace ETS2_Local_Radio_server
 
                 Ets2Folder = s.folders.ets2 ?? Ets2Folder;
                 AtsFolder = s.folders.ats ?? AtsFolder;
+
+                Use_Local_Server = s.localserver ?? Use_Local_Server;
             }
         }
 
@@ -81,6 +85,7 @@ namespace ETS2_Local_Radio_server
                 overlay = Overlay,
                 controller = Controller,
                 vr = VR,
+                localserver = Use_Local_Server,
                 keys = new
                 {
                     previous = PreviousKey,

@@ -68,6 +68,7 @@
             this.locationLabel = new System.Windows.Forms.Label();
             this.comboIP = new System.Windows.Forms.ComboBox();
             this.URLLabel = new System.Windows.Forms.LinkLabel();
+            this.cb_UseLocalServer = new System.Windows.Forms.CheckBox();
             this.comboLang = new System.Windows.Forms.ComboBox();
             this.folderDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.joystickTimer = new System.Windows.Forms.Timer(this.components);
@@ -420,8 +421,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 307F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
             this.tableLayoutPanel1.Controls.Add(this.gameInfo, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gameLabel, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.statusInfo, 0, 1);
@@ -431,6 +432,7 @@
             this.tableLayoutPanel1.Controls.Add(this.locationLabel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.comboIP, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.URLLabel, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.cb_UseLocalServer, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -449,7 +451,7 @@
             this.gameInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.gameInfo.Location = new System.Drawing.Point(3, 0);
             this.gameInfo.Name = "gameInfo";
-            this.gameInfo.Size = new System.Drawing.Size(94, 23);
+            this.gameInfo.Size = new System.Drawing.Size(111, 23);
             this.gameInfo.TabIndex = 13;
             this.gameInfo.Text = "Game:";
             this.gameInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -458,9 +460,9 @@
             // 
             this.gameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gameLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.gameLabel.Location = new System.Drawing.Point(103, 0);
+            this.gameLabel.Location = new System.Drawing.Point(120, 0);
             this.gameLabel.Name = "gameLabel";
-            this.gameLabel.Size = new System.Drawing.Size(301, 23);
+            this.gameLabel.Size = new System.Drawing.Size(284, 23);
             this.gameLabel.TabIndex = 12;
             this.gameLabel.Text = "Euro Truck Simulator 2";
             this.gameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -471,7 +473,7 @@
             this.statusInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.statusInfo.Location = new System.Drawing.Point(3, 23);
             this.statusInfo.Name = "statusInfo";
-            this.statusInfo.Size = new System.Drawing.Size(94, 23);
+            this.statusInfo.Size = new System.Drawing.Size(111, 23);
             this.statusInfo.TabIndex = 8;
             this.statusInfo.Text = "Status:";
             this.statusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -482,7 +484,7 @@
             this.coordinatesInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.coordinatesInfo.Location = new System.Drawing.Point(3, 46);
             this.coordinatesInfo.Name = "coordinatesInfo";
-            this.coordinatesInfo.Size = new System.Drawing.Size(94, 23);
+            this.coordinatesInfo.Size = new System.Drawing.Size(111, 23);
             this.coordinatesInfo.TabIndex = 9;
             this.coordinatesInfo.Text = "Coordinates:";
             this.coordinatesInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -493,7 +495,7 @@
             this.URLInfo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.URLInfo.Location = new System.Drawing.Point(3, 69);
             this.URLInfo.Name = "URLInfo";
-            this.URLInfo.Size = new System.Drawing.Size(94, 23);
+            this.URLInfo.Size = new System.Drawing.Size(111, 23);
             this.URLInfo.TabIndex = 10;
             this.URLInfo.Text = "URL:";
             this.URLInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -502,9 +504,9 @@
             // 
             this.statusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.statusLabel.Location = new System.Drawing.Point(103, 23);
+            this.statusLabel.Location = new System.Drawing.Point(120, 23);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(301, 23);
+            this.statusLabel.Size = new System.Drawing.Size(284, 23);
             this.statusLabel.TabIndex = 7;
             this.statusLabel.Text = "status";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -513,9 +515,9 @@
             // 
             this.locationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.locationLabel.Location = new System.Drawing.Point(103, 46);
+            this.locationLabel.Location = new System.Drawing.Point(120, 46);
             this.locationLabel.Name = "locationLabel";
-            this.locationLabel.Size = new System.Drawing.Size(301, 23);
+            this.locationLabel.Size = new System.Drawing.Size(284, 23);
             this.locationLabel.TabIndex = 6;
             this.locationLabel.Text = "XYZ";
             this.locationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -526,23 +528,34 @@
             this.comboIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboIP.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.comboIP.FormattingEnabled = true;
-            this.comboIP.Location = new System.Drawing.Point(103, 72);
+            this.comboIP.Location = new System.Drawing.Point(120, 72);
             this.comboIP.Name = "comboIP";
-            this.comboIP.Size = new System.Drawing.Size(301, 21);
+            this.comboIP.Size = new System.Drawing.Size(284, 21);
             this.comboIP.TabIndex = 11;
             // 
             // URLLabel
             // 
             this.URLLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.URLLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.URLLabel.Location = new System.Drawing.Point(103, 92);
+            this.URLLabel.Location = new System.Drawing.Point(120, 92);
             this.URLLabel.Name = "URLLabel";
-            this.URLLabel.Size = new System.Drawing.Size(301, 26);
+            this.URLLabel.Size = new System.Drawing.Size(284, 26);
             this.URLLabel.TabIndex = 6;
             this.URLLabel.TabStop = true;
             this.URLLabel.Text = "Open ETS2 Local Radio";
             this.URLLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.URLLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.URLLabel_LinkClicked);
+            // 
+            // cb_UseLocalServer
+            // 
+            this.cb_UseLocalServer.AutoSize = true;
+            this.cb_UseLocalServer.Location = new System.Drawing.Point(3, 95);
+            this.cb_UseLocalServer.Name = "cb_UseLocalServer";
+            this.cb_UseLocalServer.Size = new System.Drawing.Size(108, 17);
+            this.cb_UseLocalServer.TabIndex = 14;
+            this.cb_UseLocalServer.Text = "Use Local Server";
+            this.cb_UseLocalServer.UseVisualStyleBackColor = true;
+            this.cb_UseLocalServer.CheckedChanged += new System.EventHandler(this.cb_UseLocalServer_CheckedChanged);
             // 
             // comboLang
             // 
@@ -679,6 +692,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.groupInfo.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.groupInstall.ResumeLayout(false);
             this.groupInstall.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Koenvh)).EndInit();
@@ -737,5 +751,6 @@
         private System.Windows.Forms.LinkLabel removePluginButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox cb_UseLocalServer;
     }
 }

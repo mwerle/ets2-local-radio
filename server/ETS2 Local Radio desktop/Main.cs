@@ -95,6 +95,9 @@ namespace ETS2_Local_Radio_server
 
             comboController.SelectedText = Settings.Controller;
 
+            cb_UseLocalServer.Checked = Settings.Use_Local_Server;
+            comboIP.Enabled = !Settings.Use_Local_Server;
+
             //Load favourites
             Favourites.Load();
 
@@ -593,7 +596,13 @@ namespace ETS2_Local_Radio_server
 
         private void URLLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://localradio.koenvh.nl/?api=" + comboIP.SelectedItem.ToString());
+            string szUrl = null;
+            if(cb_UseLocalServer.Checked) {
+                szUrl = "http://localhost:8330/";
+            } else {
+                szUrl = "http://localradio.koenvh.nl/?api=" + comboIP.SelectedItem.ToString();
+            }
+            Process.Start(szUrl);
         }
 
         private void Koenvh_Click(object sender, EventArgs e)
@@ -796,6 +805,7 @@ namespace ETS2_Local_Radio_server
                     gameLabel.Text = "Euro Truck Simulator 2";
                     writeFile("game", "0", "0");
                     Station.AttachProcess("eurotrucks2");
+                    gameFound(currentGame);
                 }
                 ets2Found = true;
             }
@@ -807,6 +817,7 @@ namespace ETS2_Local_Radio_server
                     gameLabel.Text = "American Truck Simulator";
                     writeFile("game", "0", "0");
                     Station.AttachProcess("amtrucks");
+                    gameFound(currentGame);
                 }
                 atsFound = true;
             }
@@ -817,13 +828,26 @@ namespace ETS2_Local_Radio_server
             }
         }
 
+
+        private void gameFound(string game)
+        {
+            if(game == "ats")
+            {
+                installAtsButton.Image = Resources.check;
+            } else if(game == "ets2") {
+                installEts2Button.Image = Resources.check;
+            } else {
+                return; // TODO: Throw exception?
+            }
+            groupInfo.Enabled = true;
+            groupSettings.Enabled = true;
+        }
+
         private void installAtsButton_Click(object sender, EventArgs e)
         {
             if (ChooseFolder("ats"))
             {
-                installAtsButton.Image = Resources.check;
-                groupInfo.Enabled = true;
-                groupSettings.Enabled = true;
+                gameFound("ats");
             }
         }
 
@@ -831,9 +855,7 @@ namespace ETS2_Local_Radio_server
         {
             if (ChooseFolder("ets2"))
             {
-                installEts2Button.Image = Resources.check;
-                groupInfo.Enabled = true;
-                groupSettings.Enabled = true;
+                gameFound("ets2");
             }
         }
 
@@ -874,6 +896,12 @@ namespace ETS2_Local_Radio_server
                 Log.Write(ex.ToString());
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void cb_UseLocalServer_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Use_Local_Server = (sender as CheckBox).Checked;
+            comboIP.Enabled = !Settings.Use_Local_Server;
         }
     }
 }
