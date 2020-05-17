@@ -75,9 +75,14 @@ function initialise() {
     refreshLanguage();
     refreshFavourites();
 
+    //setInterval(function () {
+    //    $.getJSON(g_api + "/api/", function (data) {
+    //        refresh(data);
+    //    });
+    //}, 1000);
     setInterval(function () {
-        $.getJSON(g_api + "/api/", function (data) {
-            refresh(data);
+        $.getJSON(g_api + "/radio/", function (data) {
+            updateRadio(data);
         });
     }, 1000);
 
@@ -170,7 +175,7 @@ function initialise() {
     });
 }
 
-function refresh(data) {
+function updateRadio(data) {
 
     var country_lowest_distance = "nothing";
     var city_lowest_distance = "nothing";
@@ -183,6 +188,11 @@ function refresh(data) {
         }
     };
 
+    if( data.version != 1 ) {
+		// How to raise an error?
+		return;
+    }
+
     /*
     if(!data.Drivetrain.EngineEnabled) {
         if(!document.getElementById('player').paused) {
@@ -192,7 +202,7 @@ function refresh(data) {
     */
 
     //Test whether location is real and not disconnected
-    var pos = data.TruckValues.CurrentValues.PositionValue.Position;
+    var pos = data.coordinates; //data.TruckValues.CurrentValues.PositionValue.Position;
     if (!(pos.X == 0.0 && pos.Y == 0.0 && pos.Z == 0.0) || g_show_all) {
         for (var i = 0; i < cities.length; i++) {
             //Fix uppercase issues (*cough* SCS):

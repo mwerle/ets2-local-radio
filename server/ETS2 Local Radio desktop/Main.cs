@@ -39,7 +39,7 @@ namespace ETS2_Local_Radio_server
 
         public static DVector coordinates;
 
-        public static object ets2data;
+        public static SCSTelemetry ets2data;
         public static Commands commandsData;
 
         public static string simulatorNotRunning = "Simulator not yet running";

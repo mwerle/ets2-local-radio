@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using SCSSdkClient.Object;
 
 namespace ETS2_Local_Radio_server
 {
@@ -267,6 +268,17 @@ namespace ETS2_Local_Radio_server
             {
                 string text = Newtonsoft.Json.JsonConvert.SerializeObject(Main.ets2data);
 
+                context.Response.ContentType = "application/json";
+                context.Response.ContentLength64 = Encoding.UTF8.GetBytes(text).Length;
+                context.Response.StatusCode = (int)HttpStatusCode.OK;
+                context.Response.OutputStream.Write(Encoding.UTF8.GetBytes(text), 0, Encoding.UTF8.GetBytes(text).Length);
+                context.Response.OutputStream.Flush();
+            }
+            else if (context.Request.Url.AbsolutePath == "/radio/")
+            {
+                var RadioData = new { version = 1, coordinates = Main.ets2data.TruckValues.CurrentValues.PositionValue.Position };
+
+                string text = Newtonsoft.Json.JsonConvert.SerializeObject(RadioData);
                 context.Response.ContentType = "application/json";
                 context.Response.ContentLength64 = Encoding.UTF8.GetBytes(text).Length;
                 context.Response.StatusCode = (int)HttpStatusCode.OK;
